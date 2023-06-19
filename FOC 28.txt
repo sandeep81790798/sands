@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <math.h>
+
+double calculateCosine(double x, int terms) {
+    double result = 1.0;
+    int sign = -1;
+    int i;
+    int denominator = 2;
+    
+    for (i = 2; i <= terms; i += 2) {
+        result += sign * pow(x, i) / denominator;
+        sign *= -1;
+        denominator *= (i + 1) * (i + 2);
+    }
+    
+    return result;
+}
+
+int main() {
+    double angle;
+    int terms;
+    
+    printf("Enter the angle in radians: ");
+    scanf("%lf", &angle);
+    
+    printf("Enter the number of terms to calculate: ");
+    scanf("%d", &terms);
+    
+    double cosine = calculateCosine(angle, terms);
+    
+    printf("The cosine of %.2f radians is: %.4f\n", angle, cosine);
+    
+    return 0;
+}

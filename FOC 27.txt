@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <math.h>
+
+double calculateSine(double x, int terms) {
+    double result = 0.0;
+    int sign = 1;
+    int i;
+    int denominator = 1;
+    
+    for (i = 1; i <= terms; i += 2) {
+        result += sign * pow(x, i) / denominator;
+        sign *= -1;
+        denominator *= (i + 1) * (i + 2);
+    }
+    
+    return result;
+}
+
+int main() {
+    double angle;
+    int terms;
+    
+    printf("Enter the angle in radians: ");
+    scanf("%lf", &angle);
+    
+    printf("Enter the number of terms to calculate: ");
+    scanf("%d", &terms);
+    
+    double sine = calculateSine(angle, terms);
+    
+    printf("The sine of %.2f radians is: %.4f\n", angle, sine);
+    
+    return 0;
+}

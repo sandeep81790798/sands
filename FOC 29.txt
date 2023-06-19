@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <math.h>
+
+double calculateExponential(double x, int terms) {
+    double result = 1.0;
+    double numerator = x;
+    int denominator = 1;
+    int sign = -1;
+    int i;
+    
+    for (i = 2; i <= terms; i++) {
+        result += sign * numerator / denominator;
+        numerator *= x;
+        denominator *= i;
+        sign *= -1;
+    }
+    
+    return result;
+}
+
+int main() {
+    double x;
+    int terms;
+    
+    printf("Enter the value of x: ");
+    scanf("%lf", &x);
+    
+    printf("Enter the number of terms to calculate: ");
+    scanf("%d", &terms);
+    
+    double exponential = calculateExponential(x, terms);
+    
+    printf("e^%.2f - 1 = %.4f\n", x, exponential);
+    
+    return 0;
+}
